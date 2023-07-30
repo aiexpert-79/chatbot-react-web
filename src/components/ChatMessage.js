@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdComputer } from 'react-icons/md';
+// import { MdComputer } from 'react-icons/md';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import moment from 'moment';
 import Image from './Image';
 import person from '../assets/person.png';
+import chatbot from '../assets/chatbot.png';
 
 /**
  * A chat message component that displays a message with a timestamp and an icon.
@@ -59,7 +60,8 @@ const ChatMessage = (props) => {
         {ai ? (
           <div className='avatar'>
             <div className='w-8 border rounded-full'>
-              <MdComputer className='w-6 h-full mx-auto' />
+              {/* <MdComputer className='w-6 h-full mx-auto' /> */}
+              <img src={chatbot} alt='chatbot pic' />
             </div>
           </div>
         ) : (

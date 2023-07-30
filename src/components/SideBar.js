@@ -3,7 +3,6 @@ import {
   MdClose,
   MdMenu,
   MdAdd,
-  MdOutlineCoffee,
   MdOutlineVpnKey,
 } from 'react-icons/md';
 import { AiOutlineGithub } from 'react-icons/ai';
@@ -68,21 +67,9 @@ const SideBar = () => {
         <DarkMode open={open} />
         <div className='nav'>
           <a
-            href='https://www.buymeacoffee.com/eyuel'
             rel='noreferrer'
             target='_blank'
-            className='nav__item'>
-            <div className='nav__icons'>
-              <MdOutlineCoffee />
-            </div>
-            <h1 className={`${!open && 'hidden'}`}>Support this project</h1>
-          </a>
-        </div>
-        <div className='nav'>
-          <a
-            rel='noreferrer'
-            target='_blank'
-            href='https://github.com/EyuCoder/chatgpt-clone'
+            href='https://github.com/aiexpert-79/chatbot-react-web'
             className='nav__item'>
             <div className='nav__icons'>
               <AiOutlineGithub />
