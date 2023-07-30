@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import {
-  MdClose,
+  MdOutlineKeyboardDoubleArrowLeft,
   MdMenu,
   MdAdd,
   MdOutlineVpnKey,
@@ -46,7 +46,7 @@ const SideBar = () => {
         </h1>
         <div className={`sidebar__btn-close`} onClick={() => setOpen(!open)}>
           {open ? (
-            <MdClose className='sidebar__btn-icon' />
+            <MdOutlineKeyboardDoubleArrowLeft className='sidebar__btn-icon' />
           ) : (
             <MdMenu className='sidebar__btn-icon' />
           )}

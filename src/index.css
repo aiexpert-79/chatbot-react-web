@@ -17,6 +17,17 @@
     @apply flex flex-col gap-y-4 h-screen bg-dark-grey p-2 pt-4 relative duration-300;
   }
 
+  /* @media (max-width:768px) {
+    .sidebar {
+      display: none;
+      position: absolute;
+      z-index: 1;
+    }
+    body:focus .sidebar {
+      display: block;
+    }
+  } */
+
   .sidebar__app-bar {
     @apply flex justify-center gap-4 items-center;
   }
@@ -30,7 +41,7 @@
   }
 
   .sidebar__btn-icon {
-    @apply w-8 h-8;
+    /* @apply w-8 h-8; */
   }
 
   .sidebar__app-logo {
@@ -165,12 +176,4 @@
 
 ::-webkit-scrollbar-thumb {
   @apply bg-light-grey dark:bg-dark-grey rounded-xl;
-}
-
-@media (max-width:768px) {
-  .sidebar {
-    width: 100%;
-    float: none;
-    display: none;
-  }
 }
