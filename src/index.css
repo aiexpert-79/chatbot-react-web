@@ -166,3 +166,11 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-light-grey dark:bg-dark-grey rounded-xl;
 }
+
+@media (max-width:768px) {
+  .sidebar {
+    width: 100%;
+    float: none;
+    display: none;
+  }
+}
