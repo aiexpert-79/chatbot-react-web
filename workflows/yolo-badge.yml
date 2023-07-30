@@ -1,0 +1,22 @@
+name: YOLO Badge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Add YOLO badge
+        uses: actions/create-release@v1
+        with:
+          tag_name: yolo
+          release_name: YOLO Badge
+          draft: false
+          prerelease: false
