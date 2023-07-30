@@ -36,6 +36,6 @@ npm start
 - react-icons
 - react-markdown
 
-## 📝 License © [Eyuel](https://linkedin.com/au/honey Moharry)
+## 📝 License © [Honey](https://linkedin.com/au/honey Moharry)
 
 > This project is released under the Apache License 2.0 license. See [LICENSE](./LICENSE) for details.
