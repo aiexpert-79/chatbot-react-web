@@ -48,7 +48,7 @@ const ChatView = () => {
     addMessage(newMsg);
   };
 
-  /**
+  /**async await
    * Sends our prompt to our API and get response to our request from openai.
    *
    * @param {Event} e - The submit event of the form.
