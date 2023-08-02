@@ -4,12 +4,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/eyucoder/chatgpt-clone"
+    "url": "https://github.com/aiexpert-79/chatbot-react-web"
   },
   "author": {
-    "name": "eyucoder",
-    "email": "eyueldaniel0921@gmail.com",
-    "url": "https://github.com/eyucoder"
+    "name": "aiexpert-79",
+    "email": "hmh19980907@gmail.com",
+    "url": "https://github.com/aiexpert-79"
   },
   "dependencies": {
     "bad-words": "^3.0.4",

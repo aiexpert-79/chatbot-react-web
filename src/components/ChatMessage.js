@@ -1,5 +1,4 @@
 import React from 'react';
-// import { MdComputer } from 'react-icons/md';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -60,7 +59,6 @@ const ChatMessage = (props) => {
         {ai ? (
           <div className='avatar'>
             <div className='w-8 border rounded-full'>
-              {/* <MdComputer className='w-6 h-full mx-auto' /> */}
               <img src={chatbot} alt='chatbot pic' />
             </div>
           </div>
