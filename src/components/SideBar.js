@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect } from 'react';
 import {
   MdOutlineKeyboardDoubleArrowLeft,
   MdMenu,
-  MdAdd,
+  MdCheckCircleOutline,
   MdOutlineVpnKey,
 } from 'react-icons/md';
-import { AiOutlineGithub } from 'react-icons/ai';
+// import { AiOutlineGithub } from 'react-icons/ai';
 import { ChatContext } from '../context/chatContext';
 import bot from '../assets/bot.ico';
 import DarkMode from './DarkMode';
@@ -54,18 +54,18 @@ const SideBar = () => {
       </div>
       <div className='nav'>
         <span
-          className='border nav__item border-neutral-600'
+          className='nav__item border-neutral-600'
           onClick={clearChat}>
           <div className='nav__icons'>
-            <MdAdd />
+            <MdCheckCircleOutline />
           </div>
-          <h1 className={`${!open && 'hidden'}`}>New chat</h1>
+          <h1 className={`${!open && 'hidden'}`}>Reset</h1>
         </span>
       </div>
 
       <div className='nav__bottom'>
         <DarkMode open={open} />
-        <div className='nav'>
+        {/* <div className='nav'>
           <a
             rel='noreferrer'
             target='_blank'
@@ -76,7 +76,7 @@ const SideBar = () => {
             </div>
             <h1 className={`${!open && 'hidden'}`}>Clone on Github</h1>
           </a>
-        </div>
+        </div> */}
         <div onClick={() => setModalOpen(true)} className='nav'>
           <span htmlFor='setting-modal' className='nav__item'>
             <div className='nav__icons'>

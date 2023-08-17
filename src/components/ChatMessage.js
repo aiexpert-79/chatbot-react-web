@@ -15,7 +15,7 @@ import chatbot from '../assets/chatbot.png';
  */
 const ChatMessage = (props) => {
   const { id, createdAt, text, ai = false, selected } = props.message;
-
+  
   return (
     <div
       key={id}

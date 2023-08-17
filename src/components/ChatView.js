@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import ChatMessage from './ChatMessage';
 import { ChatContext } from '../context/chatContext';
@@ -6,9 +7,9 @@ import { MdSend } from 'react-icons/md';
 import Filter from 'bad-words';
 import { davinci } from '../utils/davinci';
 import { dalle } from '../utils/dalle';
+// import { whisper } from '../utils/whisper';
 import Modal from './Modal';
 import Setting from './Setting';
-
 /**
  * A chat view component that displays a list of messages and a form for sending new messages.
  */
@@ -17,18 +18,16 @@ const ChatView = () => {
   const inputRef = useRef();
   const [formValue, setFormValue] = useState('');
   const [thinking, setThinking] = useState(false);
-  const options = ['ChatGPT', 'DALL·E'];
+  const options = ['ChatGPT', 'DALL·E', 'WHISPER'];
   const [selected, setSelected] = useState(options[0]);
   const [messages, addMessage] = useContext(ChatContext);
   const [modalOpen, setModalOpen] = useState(false);
-
   /**
    * Scrolls the chat area to the bottom.
    */
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-
   /**
    * Adds a new message to the chat.
    *
@@ -44,10 +43,9 @@ const ChatView = () => {
       ai: ai,
       selected: `${selected}`,
     };
-
+    console.log(newMsg);
     addMessage(newMsg);
   };
-
   /**
    * Sends our prompt to our API and get response to our request from openai.
    *
@@ -55,73 +53,80 @@ const ChatView = () => {
    */
   const sendMessage = async (e) => {
     e.preventDefault();
-
     const key = window.localStorage.getItem('api-key');
     if (!key) {
       setModalOpen(true);
       return;
     }
-
     const filter = new Filter();
     const cleanPrompt = filter.isProfane(formValue)
       ? filter.clean(formValue)
       : formValue;
-
     const newMsg = cleanPrompt;
     const aiModel = selected;
-
     setThinking(true);
     setFormValue('');
     updateMessage(newMsg, false, aiModel);
-
     console.log(selected);
     try {
       if (aiModel === options[0]) {
-        const response = await davinci(cleanPrompt, key);
-        const data = response.data.choices[0].message.content;
-        data && updateMessage(data, true, aiModel);
+        const response = await davinci(cleanPrompt, key);  // Call the davinci function
+        const stream = response.data;
+        return new Promise((resolve) => {
+          let completion = "";
+          stream.toString().split("\n").forEach((line) => {
+            if (line.trim() !== "") {
+              const message = line.replace(/^data: /, ""); 
+              let token;
+              token = JSON.parse(message).choices[0].delta.content;
+              if (token === "[DONE]" || JSON.parse(message).choices[0].finish_reason === 'stop') 
+                resolve(completion);
+            
+            completion += token;
+            console.log(completion);
+            }
+          })
+        }).then((data) => {
+          data && updateMessage(data, true, aiModel);
+          setThinking(false);
+        });
+        
       } else {
         const response = await dalle(cleanPrompt, key);
+        console.log("images",response.data)
         const data = response.data.data[0].url;
         data && updateMessage(data, true, aiModel);
       }
     } catch (err) {
       window.alert(`Error: ${err} please try again later`);
     }
-
     setThinking(false);
   };
-
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       // 👇 Get input value
       sendMessage(e);
     }
   };
-
   /**
    * Scrolls the chat area to the bottom when the messages array is updated.
    */
   useEffect(() => {
     scrollToBottom();
   }, [messages, thinking]);
-
   /**
    * Focuses the TextArea input to when the component is first rendered.
    */
   useEffect(() => {
     inputRef.current.focus();
   }, []);
-
   return (
     <div className='chatview'>
       <main className='chatview__chatarea'>
         {messages.map((message, index) => (
           <ChatMessage key={index} message={{ ...message }} />
         ))}
-
         {thinking && <Thinking />}
-
         <span ref={messagesEndRef}></span>
       </main>
       <form className='form' onSubmit={sendMessage}>
@@ -131,6 +136,7 @@ const ChatView = () => {
           className='dropdown'>
           <option>{options[0]}</option>
           <option>{options[1]}</option>
+          <option>{options[2]}</option>
         </select>
         <div className='flex items-stretch justify-between w-full'>
           <textarea
@@ -154,5 +160,4 @@ const ChatView = () => {
     </div>
   );
 };
-
 export default ChatView;

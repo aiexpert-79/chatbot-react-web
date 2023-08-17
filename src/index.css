@@ -58,6 +58,7 @@
     rounded-md cursor-pointer 
     hover:bg-light-white
     text-white text-base;
+    justify-content: center
   }
 
   .nav__icons {

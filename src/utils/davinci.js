@@ -19,12 +19,13 @@ export const davinci = async (prompt, key) => {
       { role: 'assistant', content: 'Hi! How can I help you?' },
       { role: 'user', content: `${prompt}?` },
     ],
-    temperature: 0.3,
-    max_tokens: 1000,
-    top_p: 0.3,
-    frequency_penalty: 0.5,
-    presence_penalty: 0.2,
-  });
+    temperature: 0.1,
+    max_tokens: 256,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    stream:true
+  }, { responseType: "stream"});
 
   return response;
 };
